@@ -17,6 +17,7 @@ class BoletoItau(BoletoData):
     #  Agência (sem dv) com 4 digitos
     agencia_cedente = CustomProperty('agencia_cedente', 4)
     carteira = CustomProperty('carteira', 3)
+    barcode = None
 
     def __init__(self):
         super(BoletoItau, self).__init__()

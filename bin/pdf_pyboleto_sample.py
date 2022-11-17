@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import pyboletobr
+from pyboletobr.bank.itau import BoletoItau
 from pyboletobr.bank.real import BoletoReal
 from pyboletobr.bank.bradesco import BoletoBradesco
 from pyboletobr.bank.caixa import BoletoCaixa
@@ -99,6 +100,7 @@ def print_real():
         boleto.drawBoleto(listaDadosReal[i])
         boleto.nextPage()
     boleto.save()
+
 
 
 def print_bradesco():
@@ -255,7 +257,46 @@ def print_caixa():
 
 
 def print_itau():
-    pass
+    listaDadosItau = []
+    for i in range(2):
+        d = BoletoItau()
+        d.carteira = '112'
+        d.cedente = 'Empresa ACME LTDA'
+        d.agencia_cedente = '0000'
+        d.conta_cedente = "00000"
+        d.cedente_documento = '02.123.123/0001-12'
+        d.sacado_nome = "Cliente Teste %d" % (i + 1)
+        d.data_vencimento = datetime.date(2022, 11, 25)
+        d.data_documento = datetime.date(2022, 10, 17)
+        d.data_processamento = datetime.date(2022, 11, 17)
+        d.valor_documento = 2968.99
+        d.nosso_numero = "12345678"
+        d.numero_documento = "12345678"
+        d.barcode = "34191120368341122293484344590009691800000296899"
+
+        d.sacado = [
+            "Cliente Teste %d" % (i + 1),
+            "Rua Desconhecida, 00/0000 - Não Sei - Cidade - Cep. 00000-000",
+            ""
+        ]
+        listaDadosItau.append(d)
+
+    # Caixa Formato normal - uma pagina por folha A4
+    boleto = BoletoPDF('boleto-itau-formato-carne-teste.pdf', True)
+    for i in range(0, len(listaDadosItau), 2):
+        boleto.drawBoletoCarneDuplo(
+            listaDadosItau[i],
+            listaDadosItau[i + 1]
+        )
+        boleto.nextPage()
+    boleto.save()
+
+    # Caixa Formato normal - uma pagina por folha A4
+    boleto = BoletoPDF('boleto-itau-formato-normal-teste.pdf')
+    for i in range(len(listaDadosItau)):
+        boleto.drawBoleto(listaDadosItau[i])
+        boleto.nextPage()
+    boleto.save()
 
 
 def print_all():
@@ -265,22 +306,22 @@ def print_all():
     print("----------------------------------")
 
     print("Banco do Brasil")
-    print_bb()
-
-    print("Bradesco")
-    print_bradesco()
-
-    # print "Itau"
-    # print_itau()
-
-    print("Caixa")
-    print_caixa()
-
-    print("Real")
-    print_real()
-
-    print("Santander")
-    print_santander()
+    # print_bb()
+    #
+    # print("Bradesco")
+    # print_bradesco()
+    #
+    print("Itau")
+    print_itau()
+    #
+    # print("Caixa")
+    # print_caixa()
+    #
+    # print("Real")
+    # print_real()
+    #
+    # print("Santander")
+    # print_santander()
 
     print("----------------------------------")
     print("Ok")

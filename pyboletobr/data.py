@@ -438,16 +438,7 @@ class BoletoData(object):
         linha = self.barcode
         if not linha:
             raise BoletoException("Boleto doesn't have a barcode")
-
-        def monta_campo(campo):
-            campo_dv = "%s%s" % (campo, self.modulo10(campo))
-            return "%s.%s" % (campo_dv[0:5], campo_dv[5:])
-
-        return ' '.join([monta_campo(linha[0:4] + linha[19:24]),
-                         monta_campo(linha[24:34]),
-                         monta_campo(linha[34:44]),
-                         linha[4],
-                         linha[5:19]])
+        return f"{linha[0:5]}.{linha[5:10]} {linha[10:15]}.{linha[15:21]} {linha[21:26]}.{linha[26:32]} {linha[32:33]} {linha[33:47]}"
 
     @staticmethod
     def modulo10(num):
