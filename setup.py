@@ -24,11 +24,11 @@ def get_version(package):
 
 
 setup(
-    name='pyboleto',
-    version=get_version('pyboleto'),
-    author='Eduardo Cereto Carvalho',
-    author_email='eduardocereto@gmail.com',
-    url='https://github.com/eduardocereto/pyboleto',
+    name='pyboletobr',
+    version=get_version('pyboletobr'),
+    author='Eric de jesus machado',
+    author_email='ericmachadoeng@gmail.com',
+    url='https://github.com/ericjmachado/pyboleto',
     packages=find_packages(),
     package_data={
         '': ['LICENSE'],
@@ -67,7 +67,7 @@ setup(
     platforms='any',
     test_suite='tests.alltests.suite',
     install_requires=[
-        'distribute',
+        'setuptools',
         'reportlab'
     ],
     tests_require=[

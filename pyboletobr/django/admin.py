@@ -9,8 +9,8 @@ from datetime import date
 from django.http import HttpResponse
 from django.contrib import admin
 
-from pyboleto.django.models import Boleto
-from pyboleto.pdf import BoletoPDF
+from pyboletobr.django.models import Boleto
+from pyboletobr.pdf import BoletoPDF
 
 
 def print_boletos(modeladmin, request, queryset):

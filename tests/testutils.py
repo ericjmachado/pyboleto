@@ -12,11 +12,11 @@ import unittest
 
 from xml.etree.ElementTree import fromstring, tostring
 
-import pyboleto
+import pyboletobr
 
 
 try:
-    from pyboleto.pdf import BoletoPDF
+    from pyboletobr.pdf import BoletoPDF
 except ImportError as err:
     if sys.version_info >= (3,):
         pass  # Reportlab doesn;t support Python3
@@ -94,7 +94,7 @@ class SourceTest(object):
 
     @classmethod
     def __class_init__(cls, namespace):
-        root = os.path.dirname(os.path.dirname(pyboleto.__file__))
+        root = os.path.dirname(os.path.dirname(pyboletobr.__file__))
         cls.root = root
         for filename in get_sources(root):
             testname = filename[len(root):]
@@ -157,7 +157,7 @@ def pdftoxml(filename, output):
 
 class BoletoTestCase(unittest.TestCase):
     def _get_expected(self, bank, generated):
-        fname = os.path.join(os.path.dirname(pyboleto.__file__),
+        fname = os.path.join(os.path.dirname(pyboletobr.__file__),
                              "..", "tests", "xml", bank + '-expected.xml')
         if not os.path.exists(fname):
             with open(fname, 'wb') as f:

@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import pyboleto
-from pyboleto.bank.real import BoletoReal
-from pyboleto.bank.bradesco import BoletoBradesco
-from pyboleto.bank.caixa import BoletoCaixa
-from pyboleto.bank.bancodobrasil import BoletoBB
-from pyboleto.bank.santander import BoletoSantander
-from pyboleto.pdf import BoletoPDF
+import pyboletobr
+from pyboletobr.bank.real import BoletoReal
+from pyboletobr.bank.bradesco import BoletoBradesco
+from pyboletobr.bank.caixa import BoletoCaixa
+from pyboletobr.bank.bancodobrasil import BoletoBB
+from pyboletobr.bank.santander import BoletoSantander
+from pyboletobr.pdf import BoletoPDF
 import datetime
 
 
@@ -259,7 +259,7 @@ def print_itau():
 
 
 def print_all():
-    print("Pyboleto version: %s" % pyboleto.__version__)
+    print("Pyboleto version: %s" % pyboletobr.__version__)
     print("----------------------------------")
     print("     Printing Example Boletos     ")
     print("----------------------------------")
