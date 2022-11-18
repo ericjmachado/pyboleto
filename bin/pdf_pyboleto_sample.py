@@ -272,7 +272,7 @@ def print_itau():
         d.valor_documento = 2968.99
         d.nosso_numero = "12345678"
         d.numero_documento = "12345678"
-        d.barcode = "34191120368341122293484344590009691800000296899"
+        d.linha_digitavel = "34191120368341122293484344590009691800000296899"
 
         d.sacado = [
             "Cliente Teste %d" % (i + 1),
